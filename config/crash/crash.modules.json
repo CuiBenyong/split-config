@@ -1,0 +1,14 @@
+{
+  "dependencies": [
+    "base"
+  ],
+  "include": [
+    "@tuya-rn/tuya-panel-rn-base-crash-handler"
+  ],
+  "includePath": [
+    "config/crash/crash.index.js",
+    "node_modules/@tuya-rn/tuya-panel-rn-base-crash-handler/lib/index.js",
+    "node_modules/@tuya-rn/tuya-panel-rn-base-crash-handler/lib/handleAllException.js",
+    "node_modules/@tuya-rn/tuya-panel-rn-base-crash-handler/lib/promisePolyfill.js"
+  ]
+}

@@ -1,0 +1,1 @@
+import 'tuya-panel-kit';
