@@ -17,9 +17,9 @@ if (process.env.type === 'biz') {
   const packageJson = require(path.resolve(process.env.projectRootPath, 'package.json'));
   const { dep } = packageJson;
   if (dep) {
-    const keys = Object.keys(dep);
-    keys.forEach(item => {
-      const Key = item.toLowerCase();
+    dep.forEach(item => {
+      const k = Object.keys(item)[0];
+      const Key = k.toLowerCase();
       if (dps.indexOf(Key) === -1) {
         dps.push(Key);
       }
