@@ -67,7 +67,7 @@ function syncModules() {
       const content = {
         dependencies: originalDep,
         include,
-        includePath: Array.from(new Set(packed)),
+        includePath: Array.from(new Set(packed)).sort(),
       };
       fs.writeFileSync(process.env.modulePath, JSON.stringify(content));
       if (!(process.env.dynamic === 'true' || process.env.force === 'true')) {
