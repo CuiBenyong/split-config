@@ -6,7 +6,9 @@ const lodash = require('lodash');
 
 const pathSep = sep;
 const moduleContent = require(process.env.modulePath);
-const { include = [], dependencies: dps } = moduleContent;
+
+const { include = [], dependencies: dps, includePath } = moduleContent;
+const originalDep = [...dps];
 const modules = [...include];
 const exclude = [];
 const e = [...exclude];
@@ -62,8 +64,10 @@ function syncModules() {
     () => {
       const packed = process.env.moduleKeys.split(',');
       packed.pop();
+      packed.push(...includePath);
+
       const content = {
-        ...moduleContent,
+        dependencies: originalDep,
         include,
         includePath: Array.from(new Set(packed)),
       };
@@ -97,7 +101,7 @@ const getPath = originalPath => {
 function createModuleIdFactory() {
   return getPath;
 }
-console.log(process.env.force, typeof process.env.force);
+
 if (process.env.force === 'true') {
   console.log(modules);
 }
