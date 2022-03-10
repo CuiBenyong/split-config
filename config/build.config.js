@@ -19,18 +19,16 @@ if (process.env.type === 'biz') {
   const packageJson = require(path.resolve(process.env.projectRootPath, 'package.json'));
   const { dep } = packageJson;
   if (dep) {
-    dep.forEach(item => {
-      const k = Object.keys(item)[0];
-      const Key = k.toLowerCase();
-      if (dps.indexOf(Key) === -1) {
-        dps.push(Key);
-      }
-    });
+    dps.push(...dep);
   }
 }
 
-dps.map(key => {
-  const content = require(path.resolve(__dirname, `${key}/${key}.modules.json`));
+dps.map(item => {
+  const k = Object.keys(item)[0];
+  const v = Object.values(item)[0];
+  const key = k.toLowerCase();
+  console.log(item, k, v);
+  const content = require(path.resolve(__dirname, `${key}/${v}/${key}.modules.json`));
   const { includePath: ex } = content;
   e.push(...ex);
   return key;
